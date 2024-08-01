@@ -8,6 +8,7 @@ import os
 class PredictionPipeline:
     def __init__(self,filename):
         self.filename =filename
+        self.class_names = ['Coccidiosis', 'Healthy', 'ncd', 'salmo']
 
 
     
@@ -19,12 +20,16 @@ class PredictionPipeline:
         test_image = image.load_img(imagename, target_size = (224,224))
         test_image = image.img_to_array(test_image)
         test_image = np.expand_dims(test_image, axis = 0)
+        print(model.predict(test_image))
         result = np.argmax(model.predict(test_image), axis=1)
         print(result)
+        prediction = self.class_names[result[0]]
 
-        if result[0] == 1:
-            prediction = 'Healthy'
-            return [{ "image" : prediction}]
-        else:
-            prediction = 'Coccidiosis'
-            return [{ "image" : prediction}]
+        return [{ "image": prediction }]
+
+        # if result[0] == 1:
+        #     prediction = 'Healthy'
+        #     return [{ "image" : prediction}]
+        # else:
+        #     prediction = 'Coccidiosis'
+        #     return [{ "image" : prediction}]

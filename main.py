@@ -67,7 +67,7 @@ STAGE_NAME = "Preediction stage"
 try:
    logger.info(f"*******************")
    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
-   model_prediction = PredictionPipeline(filename="inputImage.jpg")
+   model_prediction = PredictionPipeline(filename="artifacts/data_ingestion/Chicken-fecal-images/ncd/ncd.0.jpg")
    model_prediction.predict()
    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
 
